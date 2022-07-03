@@ -7,35 +7,12 @@
 }
 
 body {
-  height: 100vh;
+  min-height: 100vh;
   background-color: #f5f7fb;
-  position: relative;
-  overflow-x: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-body::before {
-  content: "";
-  position: absolute;
-  width: 20rem;
-  height: 20rem;
-  top: -10rem;
-  right: -10rem;
-  background-color: #fffad1;
-  border-radius: 50% 20% 50% 40%;
-  z-index: -1;
-}
-body::after {
-  content: "";
-  position: absolute;
-  width: 20rem;
-  height: 20rem;
-  bottom: -10rem;
-  left: -10rem;
-  background-color: #deebf8;
-  border-radius: 50% 40% 50% 20%;
-  z-index: -1;
+  overflow-x: hidden;
 }
 
 .welcom {
@@ -74,8 +51,8 @@ body::after {
 /* ! ======== questions ========= */
 
 .quiz-section {
-  width: min(700px, 85%);
-  margin: 0 auto;
+  width: min(750px, 85%);
+  margin: 2rem auto;
 }
 .question {
   margin: 1.5rem 0;
@@ -83,7 +60,7 @@ body::after {
 
 .question h1 {
   font-family: "Karla", sans-serif;
-  font-size: 1.15rem;
+  font-size: 1.35rem;
   color: #293264;
 }
 
@@ -92,18 +69,19 @@ body::after {
   margin: 1rem 0;
   border-bottom: 1px solid #dbdef0;
   padding-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .question .choices span {
   font-family: "Inter", sans-serif;
-  font-size: 0.9rem;
+  font-size: 1rem;
   border: solid 1px #4d5b9e;
   border-radius: 25px;
   padding: 0.25rem 1rem;
   color: #293264;
   cursor: pointer;
-  white-space: nowrap;
-  margin-right: 1rem;
 }
 .check-btn {
   text-align: center;
