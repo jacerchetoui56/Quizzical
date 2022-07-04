@@ -50,6 +50,11 @@ function App() {
   // * when the user submit his answers the checkAnswer function is called to check the
   //* answers and allow the user to play again
   const checkAnswers = () => {
+    // score calculation
+    correctAnswers.forEach((corr, index) => {
+      if (corr === answers[index]) setScore(prev => prev + 1)
+    })
+
     if (!checking) {
       setChecking(true)
     }
@@ -61,12 +66,10 @@ function App() {
       setAnswers([])
       setStart(false)
     }
-    // score calculation
-    correctAnswers.forEach((corr, index) => {
-      if (corr === answers[index]) setScore(prev => prev + 1)
-    })
   }
 
+  console.log("answers => ", answers)
+  console.log("score => ", score);
   return (
     <>
       {!start ?
