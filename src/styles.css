@@ -27,17 +27,18 @@ body {
 
 .welcom h1 {
   font-family: "Karla", sans-serif;
-  font-size: 2rem;
+  font-size: 2.75rem;
   color: #293264;
 }
 .welcom p {
   text-align: center;
+  font-size: 1.25rem;
   margin: 0.5rem 0;
   color: #293264;
   font-family: "Inter", sans-serif;
 }
 .welcom button {
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   cursor: pointer;
   margin: 1.5rem 0;
   color: white;
