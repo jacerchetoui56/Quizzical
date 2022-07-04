@@ -68,8 +68,6 @@ function App() {
     }
   }
 
-  console.log("answers => ", answers)
-  console.log("score => ", score);
   return (
     <>
       {!start ?
