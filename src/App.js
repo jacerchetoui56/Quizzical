@@ -1,16 +1,19 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import './styles.css'
 import Welcom from './Welcom';
-import Choice from './Choice';
+import Question from './Question';
 function App() {
-  // array.sort(() => Math.random() - 0.5);
+
   const [start, setStart] = useState(false);
   const [questions, setQuestions] = useState([])
-  const [answers, setAnswers] = useState(new Array(5))
   const [checking, setChecking] = useState(false)
+  const [answers, setAnswers] = useState([])
+  const [score, setScore] = useState(0)
+  const [playAgain, setPlayAgain] = useState(false)
+
 
   const fetchData = async () => {
-    const response = await fetch('https://opentdb.com/api.php?amount=5&type=multiple');
+    const response = await fetch('https://opentdb.com/api.php?amount=5&type=multiple&difficulty=easy');
     const data = await response.json();
     setQuestions(data.results)
     setQuestions(prev => {
@@ -23,29 +26,40 @@ function App() {
     })
   }
 
+  const correctAnswers = useMemo(() => {
+    return questions.map(question => [...question.questions].indexOf(question.correct_answer))
+  }, [questions])
+
   useEffect(() => {
     try {
       fetchData();
     } catch (error) {
-      console.log(error.message)
+      console.log(error)
     }
+  }, [playAgain])
 
-  }, [])
-
-  function choose(questionIndex, index) {
-    const newAnswers = [...answers];
-    newAnswers[questionIndex] = index;
-    setAnswers(newAnswers);
+  const handleChoose = (questionIndex, index) => {
+    const newAnswers = [...answers]
+    newAnswers[questionIndex] = index
+    setAnswers(newAnswers)
   }
-
 
   const checkAnswers = () => {
-    setChecking(true)
-    return questions.map(question => {
-      return question.questions.indexOf(question.correct_answer)
+    if (!checking) {
+      setChecking(true)
+    }
+    else {
+      setChecking(false)
+      setPlayAgain(true)
+      setScore(0)
+      setAnswers([])
+      setStart(false)
+    }
+
+    correctAnswers.forEach((corr, index) => {
+      if (corr === answers[index]) setScore(prev => prev + 1)
     })
   }
-
 
   return (
     <>
@@ -55,31 +69,27 @@ function App() {
         <section className='quiz-section'>
           {
             questions.map((question, questionIndex) => {
-
-              return (
-                <div className='question'>
-                  <h1>{question.question}</h1>
-                  <div className="choices">
-                    {
-                      question.questions.map((choice, index) => {
-                        return <Choice
-                          key={index}
-                          index={index}
-                          choice={choice}
-                          choose={() => !checking && choose(questionIndex, index)}
-                          chosen={answers[questionIndex] === index}
-                        >
-                        </Choice>
-                      })
-                    }
-                  </div>
-                </div>
-              )
+              return <Question
+                key={questionIndex}
+                questionIndex={questionIndex}
+                {...question}
+                handleChoose={handleChoose}
+                answer={answers[questionIndex]}
+                correctAnswers={correctAnswers}
+                checking={checking}
+              />
             })
           }
+          {
+            checking &&
+            <div className="score">
+              Your Scored {score} <sub>/{questions.length}</sub>
+            </div>
+          }
           <div className="check-btn">
-            <button onClick={!checking && checkAnswers}>
-              Check answers
+            <button onClick={() => checkAnswers()
+            }>
+              {checking ? 'Play again' : 'Check answers'}
             </button>
           </div>
         </section>

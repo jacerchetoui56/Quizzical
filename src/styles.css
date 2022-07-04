@@ -52,7 +52,7 @@ body {
 
 .quiz-section {
   width: min(750px, 85%);
-  margin: 2rem auto;
+  margin: 3rem auto 2rem;
 }
 .question {
   margin: 1.5rem 0;
@@ -72,6 +72,17 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+}
+.chosen {
+  background-color: #d6dbf5;
+}
+.correct {
+  border: none !important;
+  background-color: #94d7a2;
+}
+.wrong {
+  border: none !important;
+  background-color: #f8bcbc;
 }
 
 .question .choices span {
@@ -96,4 +107,14 @@ body {
   border: none;
   padding: 1rem 2.5rem;
   font-family: "Inter", sans-serif;
+}
+
+.score {
+  text-align: center;
+  font-family: "karla";
+  color: #293264;
+  font-size: 2.25rem;
+  background-color: #29326436;
+  border-radius: 10px;
+  padding: 1.5rem 0;
 }
