@@ -52,6 +52,10 @@ function App() {
   const checkAnswers = () => {
     if (!checking) {
       setChecking(true)
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
     }
     else {
       //* setting everything back to the initial state
@@ -72,7 +76,13 @@ function App() {
       {!start ?
         <Welcom startFunction={() => setStart(true)} />
         :
+
         <section className='quiz-section'>
+          {checking &&
+            <div className="score">
+              Your Scored {score} <sub>/{questions.length}</sub>
+            </div>
+          }
           {
             questions.map((question, questionIndex) => {
               return <Question
@@ -86,12 +96,7 @@ function App() {
               />
             })
           }
-          {
-            checking &&
-            <div className="score">
-              Your Scored {score} <sub>/{questions.length}</sub>
-            </div>
-          }
+
           <div className="check-btn">
             <button onClick={() => checkAnswers()
             }>
