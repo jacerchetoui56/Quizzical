@@ -11,7 +11,7 @@ function App() {
   const [score, setScore] = useState(0)
   const [playAgain, setPlayAgain] = useState(false)
 
-
+  // ! Note : the API is badly represented so I had to deal with it to get the questions
   const fetchData = async () => {
     const response = await fetch('https://opentdb.com/api.php?amount=5&type=multiple&difficulty=easy');
     const data = await response.json();
@@ -26,10 +26,12 @@ function App() {
     })
   }
 
+  // * these are the correct answers to compare them later with the user's answers
   const correctAnswers = useMemo(() => {
     return questions.map(question => [...question.questions].indexOf(question.correct_answer))
-  }, [questions])
+  }, [questions]) // of course the correct answer depends on the questions  
 
+  //* on the first render and when the user clicks playAgain the questions change
   useEffect(() => {
     try {
       fetchData();
@@ -38,24 +40,28 @@ function App() {
     }
   }, [playAgain])
 
+  // * this function is to know the user's answers and to handle the styling
   const handleChoose = (questionIndex, index) => {
     const newAnswers = [...answers]
     newAnswers[questionIndex] = index
     setAnswers(newAnswers)
   }
 
+  // * when the user submit his answers the checkAnswer function is called to check the
+  //* answers and allow the user to play again
   const checkAnswers = () => {
     if (!checking) {
       setChecking(true)
     }
     else {
+      //* setting everything back to the initial state
       setChecking(false)
       setPlayAgain(true)
       setScore(0)
       setAnswers([])
       setStart(false)
     }
-
+    // score calculation
     correctAnswers.forEach((corr, index) => {
       if (corr === answers[index]) setScore(prev => prev + 1)
     })
