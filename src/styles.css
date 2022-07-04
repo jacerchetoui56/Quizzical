@@ -1,0 +1,120 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Karla:wght@200;300;400;500;600&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background-color: #f5f7fb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+.welcom {
+  width: min(700px, 85%);
+  margin: 0 auto;
+  min-height: max(600px, 60vh);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.welcom h1 {
+  font-family: "Karla", sans-serif;
+  font-size: 2rem;
+  color: #293264;
+}
+.welcom p {
+  text-align: center;
+  margin: 0.5rem 0;
+  color: #293264;
+  font-family: "Inter", sans-serif;
+}
+.welcom button {
+  font-size: 1.1rem;
+  cursor: pointer;
+  margin: 1.5rem 0;
+  color: white;
+  background-color: #4d5b9e;
+  border-radius: 10px;
+  border: none;
+  padding: 1rem 2.5rem;
+  font-family: "Inter", sans-serif;
+}
+
+/* ! ======== questions ========= */
+
+.quiz-section {
+  width: min(750px, 85%);
+  margin: 3rem auto 2rem;
+}
+.question {
+  margin: 1.5rem 0;
+}
+
+.question h1 {
+  font-family: "Karla", sans-serif;
+  font-size: 1.35rem;
+  color: #293264;
+}
+
+.question .choices {
+  width: 95%;
+  margin: 1rem 0;
+  border-bottom: 1px solid #dbdef0;
+  padding-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.chosen {
+  background-color: #d6dbf5;
+}
+.correct {
+  border: none !important;
+  background-color: #94d7a2;
+}
+.wrong {
+  border: none !important;
+  background-color: #f8bcbc;
+}
+
+.question .choices span {
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  border: solid 1px #4d5b9e;
+  border-radius: 25px;
+  padding: 0.25rem 1rem;
+  color: #293264;
+  cursor: pointer;
+}
+.check-btn {
+  text-align: center;
+}
+.check-btn button {
+  font-size: 1.1rem;
+  cursor: pointer;
+  margin: 1.5rem 0;
+  color: white;
+  background-color: #4d5b9e;
+  border-radius: 10px;
+  border: none;
+  padding: 1rem 2.5rem;
+  font-family: "Inter", sans-serif;
+}
+
+.score {
+  text-align: center;
+  font-family: "karla";
+  color: #293264;
+  font-size: 2.25rem;
+  background-color: #29326436;
+  border-radius: 10px;
+  padding: 1.5rem 0;
+}
