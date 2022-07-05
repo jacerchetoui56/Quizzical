@@ -35,10 +35,14 @@ function App() {
   useEffect(() => {
     try {
       fetchData();
+      console.log('data fetched');
     } catch (error) {
       console.log(error)
     }
   }, [playAgain])
+
+  console.log("playAgain ==> ", playAgain)
+  console.log("checking ==> ", checking)
 
   // * this function is to know the user's answers and to handle the styling
   const handleChoose = (questionIndex, index) => {
@@ -61,7 +65,7 @@ function App() {
     else {
       //* setting everything back to the initial state
       setChecking(false)
-      setPlayAgain(true)
+      setPlayAgain(prev => !prev)
       setScore(0)
       setAnswers([])
       setStart(false)
